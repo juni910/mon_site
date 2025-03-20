@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.xsd">
+
+    <!-- Configuration des dépôts (mirrors) -->
+    <mirrors>
+        <!-- Miroir pour le dépôt Maven central -->
+        <mirror>
+            <id>central</id>
+            <mirrorOf>central</mirrorOf>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <blocked>false</blocked>
+        </mirror>
+
+        <!-- Exemple de miroir pour un dépôt privé (personnalise selon ton besoin) -->
+        <mirror>
+            <id>my-repo</id>
+            <mirrorOf>external:*</mirrorOf>
+            <url>https://mavendepot.monsite.com/repository</url>
+            <blocked>false</blocked>
+        </mirror>
+    </mirrors>
+
+    <!-- Profils Maven -->
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Propriétés de configuration générales, comme la version de Java à utiliser -->
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+            </properties>
+        </profile>
+
+        <!-- Exemple de profil pour la production -->
+        <profile>
+            <id>production</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <environment>production</environment>
+                <site.url>https://www.monsiteweb.com</site.url>
+            </properties>
+        </profile>
+    </profiles>
+
+    <!-- Serveurs (configuration pour l'authentification) -->
+    <servers>
+        <server>
+            <id>central</id>
+            <username>mon_utilisateur</username>
+            <password>mon_mot_de_passe</password>
+        </server>
+
+        <!-- Serveur de déploiement privé (par exemple pour la publication de l'application) -->
+        <server>
+            <id>deploy-repo</id>
+            <username>deploy_user</username>
+            <password>deploy_password</password>
+        </server>
+    </servers>
+
+    <!-- Propriétés globales -->
+    <properties>
+        <!-- Exemple de configuration pour l'utilisation de Java 8 pour la compilation -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <!-- Configuration de Proxy (si nécessaire pour accéder à Internet via un proxy) -->
+    <proxies>
+        <proxy>
+            <id>example-proxy</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>proxy.example.com</host>
+            <port>8080</port>
+            <username>proxyuser</username>
+            <password>proxy_password</password>
+            <nonProxyHosts>www.google.com|*.example.com</nonProxyHosts>
+        </proxy>
+    </proxies>
+
+    <!-- Mode interactif (utile pour les automatisations) -->
+    <interactiveMode>false</interactiveMode>
+
+</settings>
